@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plane Course</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="gameContainer">
+        <canvas id="gameCanvas"></canvas>
+        
+        <div id="startScreen">
+            <div class="title">Plane Course</div>
+            <div class="plane-icon">✈️</div>
+            <button id="playButton">PLAY</button>
+            <div class="difficulty-selector">
+                <span>Difficulty:</span>
+                <select id="difficultySelect">
+                    <option value="easy">Easy</option>
+                    <option value="medium" selected>Medium</option>
+                    <option value="hard">Hard</option>
+                </select>
+            </div>
+            <div id="controls">Use WASD or Arrow Keys to navigate</div>
+        </div>
+        
+        <div id="gameOverScreen">
+            <h1>Game Over!</h1>
+            <h2 id="finalScore">Score: 0</h2>
+            <div id="newHighScore" class="new-high-score">NEW HIGH SCORE!</div>
+            <div id="achievementUnlocked" class="achievement-unlock">Achievement Unlocked!</div>
+            <button id="restartButton">Try Again</button>
+            <button id="mainMenuButton">Main Menu</button>
+        </div>
+        
+        <div id="pauseScreen">
+            <h1>Game Paused</h1>
+            <button id="resumeButton">Resume</button>
+            <button id="quitButton">Quit Game</button>
+        </div>
+        
+        <div id="scoreElement">Score: 0</div>
+        <div id="highScoreElement">High Score: 0</div>
+        <div id="fuelElement">Fuel: 100%</div>
+        <div id="levelElement">Level: 1</div>
+        
+        <div id="powerupIndicator"></div>
+        
+        <div id="controlPanel">
+            <button id="muteButton">🔊</button>
+            <button id="pauseButton">⏸️</button>
+        </div>
+    </div>
+    
+    <script src="game.js"></script>
+</body>
+</html>

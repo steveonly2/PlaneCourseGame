@@ -1,0 +1,289 @@
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(to bottom, #87CEEB, #1E90FF);
+    font-family: 'Arial', sans-serif;
+    overflow: hidden;
+}
+
+#gameContainer {
+    position: relative;
+    width: 800px;
+    height: 600px;
+    background-color: #4ECDC4;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+}
+
+#gameCanvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: transparent;
+    display: none;
+}
+
+#startScreen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #4B79A1, #283E51);
+    color: white;
+    z-index: 10;
+}
+
+.title {
+    font-size: 70px;
+    margin-bottom: 30px;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.plane-icon {
+    font-size: 60px;
+    margin: 20px 0;
+    transform: rotate(45deg);
+    animation: fly 4s infinite;
+}
+
+@keyframes fly {
+    0% { transform: rotate(45deg) translateX(-10px); }
+    50% { transform: rotate(35deg) translateX(10px); }
+    100% { transform: rotate(45deg) translateX(-10px); }
+}
+
+.difficulty-selector {
+    margin: 15px 0;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+#difficultySelect {
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: none;
+    background-color: #6A5ACD;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+#playButton, #restartButton, #mainMenuButton, #resumeButton, #quitButton {
+    padding: 15px 40px;
+    font-size: 24px;
+    color: white;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin: 10px 0;
+}
+
+#playButton {
+    background-color: #FF6B6B;
+}
+
+#playButton:hover {
+    background-color: #FF8E8E;
+    transform: scale(1.1);
+}
+
+#restartButton, #resumeButton {
+    background-color: #4CAF50;
+}
+
+#restartButton:hover, #resumeButton:hover {
+    background-color: #5FD964;
+    transform: scale(1.1);
+}
+
+#mainMenuButton, #quitButton {
+    background-color: #6A5ACD;
+}
+
+#mainMenuButton:hover, #quitButton:hover {
+    background-color: #7B68EE;
+    transform: scale(1.1);
+}
+
+#gameOverScreen, #pauseScreen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    z-index: 9;
+    display: none;
+}
+
+#scoreElement, #highScoreElement, #fuelElement, #levelElement {
+    position: absolute;
+    right: 20px;
+    color: white;
+    font-size: 20px;
+    z-index: 8;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 8px 15px;
+    border-radius: 20px;
+    display: none;
+}
+
+#scoreElement {
+    top: 20px;
+}
+
+#highScoreElement {
+    top: 70px;
+    color: gold;
+}
+
+#fuelElement {
+    top: 120px;
+}
+
+#levelElement {
+    top: 170px;
+    color: #4CAF50;
+}
+
+#controlPanel {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    display: flex;
+    gap: 10px;
+    z-index: 12;
+}
+
+#muteButton, #pauseButton {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+#muteButton:hover, #pauseButton:hover {
+    background-color: rgba(0, 0, 0, 0.7);
+    transform: scale(1.1);
+}
+
+#controls {
+    position: absolute;
+    bottom: 20px;
+    text-align: center;
+    color: white;
+    font-size: 16px;
+    width: 100%;
+}
+
+.new-high-score {
+    color: gold;
+    font-size: 28px;
+    animation: glow 1s infinite alternate;
+    margin-top: 10px;
+    display: none;
+}
+
+.achievement-unlock {
+    color: #00FFFF;
+    font-size: 24px;
+    animation: glow 1s infinite alternate;
+    margin-top: 10px;
+    display: none;
+}
+
+@keyframes glow {
+    from {
+        text-shadow: 0 0 5px gold, 0 0 10px gold;
+    }
+    to {
+        text-shadow: 0 0 10px gold, 0 0 20px gold, 0 0 30px gold;
+    }
+}
+
+#powerupIndicator {
+    position: absolute;
+    left: 20px;
+    bottom: 20px;
+    color: white;
+    font-size: 20px;
+    z-index: 8;
+    padding: 10px;
+    border-radius: 20px;
+    display: none;
+    animation: pulse-powerup 2s infinite;
+}
+
+@keyframes pulse-powerup {
+    0% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.1); opacity: 0.9; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+/* Day/Night cycle effects */
+.night-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 50, 0.5);
+    z-index: 1;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 5s;
+}
+
+/* Responsive design */
+@media (max-width: 850px) {
+    #gameContainer {
+        width: 95vw;
+        height: 80vh;
+    }
+    
+    .title {
+        font-size: 40px;
+    }
+    
+    #playButton, #restartButton, #mainMenuButton, #resumeButton, #quitButton {
+        padding: 12px 30px;
+        font-size: 20px;
+    }
+}
+
+@media (max-height: 700px) {
+    #gameContainer {
+        height: 90vh;
+    }
+}
